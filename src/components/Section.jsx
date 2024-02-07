@@ -1,32 +1,36 @@
-import { useState } from "react"
 import {Buttons} from "./Buttons"
+import { useDispatch, useSelector } from "react-redux"
 
 export const Section = () => {
-    const [number, setChangeNumber] = useState(0)
-
-    const increace = () => {
-            setChangeNumber(number + 3)
+    const counter = useSelector((state) => state)
+    const dispatch = useDispatch() 
+    
+    
+    const handleIncreace = () => {
+        dispatch({
+            type: "plus"
+        })
     }
 
-    const decreace = () => {
-        if (number > 0) {
-            setChangeNumber(number - 2)
-        } else if (number < 0) {
-            setChangeNumber(0)
-        }
+    const handleDecreace = () => {
+        dispatch({
+            type: "minus"
+        })
     }
 
-    const reset = () => {
-        setChangeNumber(0)
+    const handleReset = () => {
+        dispatch({
+            type: "reset"
+        })
     }
 
     return(
         <section>
             <div className="zero">
-                {number}
+                {counter}
             </div>
 
-            <Buttons increace={increace} decreace={decreace} reset={reset}/>
+            <Buttons increace={handleIncreace} decreace={handleDecreace} reset={handleReset}/>
         </section>
     )
 }
