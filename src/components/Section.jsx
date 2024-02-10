@@ -1,5 +1,6 @@
 import {Buttons} from "./Buttons"
 import { useDispatch, useSelector } from "react-redux"
+import { Minus, Plus, Reset } from "./types"
 
 export const Section = () => {
     const counter = useSelector((state) => state)
@@ -7,21 +8,15 @@ export const Section = () => {
     
     
     const handleIncreace = () => {
-        dispatch({
-            type: "plus"
-        })
+        dispatch(Plus())
     }
 
     const handleDecreace = () => {
-        dispatch({
-            type: "minus"
-        })
+        dispatch(Minus())
     }
 
     const handleReset = () => {
-        dispatch({
-            type: "reset"
-        })
+        dispatch(Reset())
     }
 
     return(
